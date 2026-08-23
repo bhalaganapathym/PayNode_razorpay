@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F4F1FA;
+    color: #332F3A;
+  }
+
+  /* Nunito for all heading elements */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', system-ui, sans-serif;
+  }
+}
+
+/* ===========================
+   CLAYMORPHISM UTILITY CLASSES
+   =========================== */
+
+/* Standard Clay Card (Floating) */
+.clay-card {
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 32px;
+  box-shadow:
+    16px 16px 32px rgba(160, 150, 180, 0.2),
+    -10px -10px 24px rgba(255, 255, 255, 0.9),
+    inset 6px 6px 12px rgba(139, 92, 246, 0.03),
+    inset -6px -6px 12px rgba(255, 255, 255, 1);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Interactive Clay Card (with hover lift) */
+.clay-card-interactive {
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 32px;
+  box-shadow:
+    16px 16px 32px rgba(160, 150, 180, 0.2),
+    -10px -10px 24px rgba(255, 255, 255, 0.9),
+    inset 6px 6px 12px rgba(139, 92, 246, 0.03),
+    inset -6px -6px 12px rgba(255, 255, 255, 1);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.clay-card-interactive:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    20px 20px 40px rgba(160, 150, 180, 0.3),
+    -12px -12px 28px rgba(255, 255, 255, 1),
+    inset 6px 6px 12px rgba(139, 92, 246, 0.05),
+    inset -6px -6px 12px rgba(255, 255, 255, 1);
+}
+
+/* Clay Button (High Convexity) */
+.clay-button {
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  box-shadow:
+    12px 12px 24px rgba(139, 92, 246, 0.3),
+    -8px -8px 16px rgba(255, 255, 255, 0.4),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.4),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.clay-button:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    14px 14px 28px rgba(139, 92, 246, 0.4),
+    -10px -10px 20px rgba(255, 255, 255, 0.5),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.5),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.clay-button:active {
+  transform: scale(0.92);
+  box-shadow:
+    inset 10px 10px 20px #d9d4e3,
+    inset -10px -10px 20px #ffffff;
+}
+
+/* Recessed Clay Input */
+.clay-input {
+  border: none;
+  background: #EFEBF5;
+  border-radius: 16px;
+  box-shadow:
+    inset 10px 10px 20px #d9d4e3,
+    inset -10px -10px 20px #ffffff;
+  transition: all 0.2s ease;
+}
+
+.clay-input:focus {
+  background: #ffffff;
+  outline: none;
+  box-shadow:
+    inset 8px 8px 16px #e0dbe8,
+    inset -8px -8px 16px #ffffff;
+  ring: 4px;
+  --tw-ring-color: rgba(124, 58, 237, 0.2);
+}
+
+/* Clay Pressed (Recessed Surface) */
+.clay-pressed {
+  box-shadow:
+    inset 10px 10px 20px #d9d4e3,
+    inset -10px -10px 20px #ffffff;
+}
+
+/* ===========================
+   CLAY TEXT GRADIENT
+   =========================== */
+.clay-text-gradient {
+  background: linear-gradient(135deg, #332F3A 20%, #7C3AED 60%, #DB2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===========================
+   BACKGROUND BLOB ANIMATIONS
+   =========================== */
+.clay-blob {
+  animation: clay-float 8s ease-in-out infinite;
+}
+
+.clay-blob-alt {
+  animation: clay-float-delayed 10s ease-in-out infinite;
+}
+
+.clay-blob-slow {
+  animation: clay-float-slow 12s ease-in-out infinite;
+}
+
+/* Animation delay utilities */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* ===========================
+   SCROLLBAR (Clay Theme)
+   =========================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EFEBF5;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.5);
+}
+
+/* ===========================
+   REDUCED MOTION
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+  .clay-blob,
+  .clay-blob-alt,
+  .clay-blob-slow {
+    animation: none;
+  }
+
+  .clay-card-interactive:hover {
+    transform: none;
+  }
+
+  .clay-button:hover {
+    transform: none;
+  }
+
+  .clay-button:active {
+    transform: none;
+  }
+}
