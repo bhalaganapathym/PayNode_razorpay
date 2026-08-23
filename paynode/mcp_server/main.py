@@ -140,7 +140,7 @@ def create_order(product_id: str, quantity: int = 1, agreed_price: int = None) -
             return res
             
         receipt_id = f"rcpt_{product_id[:8]}_{int(time.time())}"
-        order = razorpay_client.order.create({
+        order_payload = {
             "amount": total_amount,
             "currency": "INR",
             "receipt": receipt_id,
@@ -150,7 +150,21 @@ def create_order(product_id: str, quantity: int = 1, agreed_price: int = None) -
                 "quantity": str(quantity),
                 "agent": "PayNode-AI-Agent"
             }
-        })
+        }
+        
+        # Retry with backoff for transient network hiccups
+        order = None
+        last_err = None
+        for attempt in range(3):
+            try:
+                order = razorpay_client.order.create(order_payload)
+                break
+            except Exception as ex:
+                last_err = ex
+                time.sleep(0.4)
+                
+        if not order:
+            raise last_err or Exception("Failed to create Razorpay order")
         
         result = {
             "order_id": order["id"],
@@ -186,6 +200,18 @@ def initiate_payment(order_id: str, payment_method: str = "card", simulate_failu
     start_time = time.time()
     args = {"order_id": order_id, "payment_method": payment_method, "simulate_failure": simulate_failure}
     
+    # Safeguard against null, empty, or missing order_id
+    if not order_id or str(order_id).strip().lower() in ["none", "null", ""]:
+        declined_res = {
+            "payment_id": None,
+            "order_id": None,
+            "status": "failed",
+            "reason": "Missing or invalid order_id. Order must be created first before initiating payment.",
+            "suggestion": "Verify product availability and ensure create_order succeeds."
+        }
+        _audit("initiate_payment", args, declined_res, "failed", start_time)
+        return declined_res
+        
     if simulate_failure:
         failed_res = {
             "payment_id": None,
@@ -199,8 +225,18 @@ def initiate_payment(order_id: str, payment_method: str = "card", simulate_failu
         return failed_res
         
     try:
-        # Fetch order amount from Razorpay
-        order = razorpay_client.order.fetch(order_id)
+        # Fetch order amount from Razorpay with retry
+        order = None
+        for attempt in range(2):
+            try:
+                order = razorpay_client.order.fetch(order_id)
+                break
+            except Exception:
+                time.sleep(0.3)
+                
+        if not order:
+            order = razorpay_client.order.fetch(order_id)
+            
         amount = order["amount"]
         
         # In test mode or agentic execution, generate a captured payment settlement

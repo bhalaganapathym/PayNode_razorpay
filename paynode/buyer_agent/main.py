@@ -429,7 +429,29 @@ def run_autonomous_engine(user_intent: str, steps: list, start_time: float) -> D
             "elapsed_seconds": round(time.time() - start_time, 2)
         }
         
-    order_id = order_res.get("order_id")
+    order_id = order_res.get("order_id") if isinstance(order_res, dict) else None
+    
+    if not order_id:
+        err_msg = order_res.get("error", "Failed to obtain Razorpay Order ID") if isinstance(order_res, dict) else "Order failed"
+        steps.append({
+            "step": len(steps) + 1,
+            "type": "thought",
+            "title": "Order Creation Failed",
+            "thought": f"Halting autonomous transaction because Razorpay order creation failed: {err_msg}.",
+            "timestamp": datetime_now_str()
+        })
+        return {
+            "intent": user_intent,
+            "model_used": "PayNode Autonomous Engine",
+            "steps": steps,
+            "final_summary": f"❌ Transaction Halted: Razorpay order creation failed ({err_msg}). No payment was attempted.",
+            "order_id": None,
+            "payment_id": None,
+            "total_spent_inr": 0,
+            "guardrail_status": "FAILED",
+            "elapsed_seconds": round(time.time() - start_time, 2)
+        }
+        
     total_spent_inr = order_res.get("amount_inr", prod_price / 100)
     
     # Step 4: Payment Execution (Handle Failure / Recovery if requested)
