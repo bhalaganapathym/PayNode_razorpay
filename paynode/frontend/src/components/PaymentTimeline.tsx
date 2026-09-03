@@ -8,93 +8,91 @@ import {
 const STAGES = [
   {
     step: "01",
-    title: "Intent Parsing",
+    title: "INTENT PARSE",
     icon: Bot,
-    color: "from-violet-400 to-violet-600",
-    desc: "Autonomous LLM decodes budget constraints and product requirements."
+    color: "bg-[#FFD93D] text-black",
+    desc: "Autonomous agent decodes user budget rules and target product constraints."
   },
   {
     step: "02",
-    title: "Catalog Discovery",
+    title: "MCP DISCOVERY",
     icon: Search,
-    color: "from-purple-400 to-purple-600",
-    desc: "FastMCP tools query merchant inventory and price metadata."
+    color: "bg-[#C4B5FD] text-black",
+    desc: "FastMCP tools query merchant inventory, stock, and discount rules."
   },
   {
     step: "03",
-    title: "Guardrail Gate",
+    title: "SAFETY GATE",
     icon: ShieldCheck,
-    color: "from-pink-400 to-pink-600",
-    desc: "Verifies ₹1,000 max purchase ceiling & 80% negotiation floor."
+    color: "bg-[#38BDF8] text-black",
+    desc: "Enforces deterministic ₹1,000 maximum ceiling and 80% discount floor."
   },
   {
     step: "04",
-    title: "Razorpay Order",
+    title: "RAZORPAY ORDER",
     icon: CreditCard,
-    color: "from-amber-400 to-amber-600",
-    desc: "Generates cryptographic order ID on Razorpay payment rails."
+    color: "bg-[#FF6B6B] text-white",
+    desc: "Generates cryptographic order ID on real-time Razorpay payment rails."
   },
   {
     step: "05",
-    title: "Settlement",
+    title: "SETTLEMENT",
     icon: CheckCircle2,
-    color: "from-emerald-400 to-emerald-600",
-    desc: "Payment captured, receipt generated, and audit log committed."
+    color: "bg-[#10B981] text-black",
+    desc: "Payment authorized, captured, and immutably written to audit log."
   }
 ];
 
 export const PaymentTimeline: React.FC = () => {
   return (
-    <div className="clay-card p-6 sm:p-8 space-y-5">
-      <div className="flex items-center justify-between">
+    <div className="neo-card p-6 sm:p-8 space-y-5 bg-white">
+      <div className="flex items-center justify-between pb-3 border-b-4 border-black">
         <div>
-          <h3 className="text-base font-black text-clay-foreground flex items-center space-x-2.5" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            <div className="p-2 rounded-[14px] bg-gradient-to-br from-pink-400 to-pink-600 text-white shadow-md">
-              <CreditCard className="w-4 h-4" />
+          <h3 className="text-xl font-black uppercase text-black flex items-center space-x-2.5">
+            <div className="w-8 h-8 bg-black text-[#FFD93D] flex items-center justify-center border-2 border-black">
+              <CreditCard className="w-5 h-5 stroke-[3px]" />
             </div>
-            <span>Agentic Commerce Pipeline</span>
+            <span>AGENTIC COMMERCE PAYMENT PIPELINE (X402)</span>
           </h3>
-          <p className="text-xs text-clay-muted mt-1 font-medium">
-            Every autonomous action flows through deterministic guardrails and cryptographic verification.
+          <p className="text-xs font-bold text-black/70 mt-1 uppercase">
+            Sequential guardrail verification and payment settlement flow
           </p>
         </div>
       </div>
 
       {/* 5-Step Pipeline Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-2">
         {STAGES.map((stage, idx) => {
           const Icon = stage.icon;
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              className="p-5 rounded-[24px] bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-1 transition-all relative flex flex-col justify-between group"
+              transition={{ delay: idx * 0.05 }}
+              className="p-4 bg-[#FFFDF5] border-4 border-black shadow-[5px_5px_0px_0px_#000] hover:shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1 transition-all relative flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-black text-clay-muted group-hover:text-clay-accent transition-colors"
-                    style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <span className="text-[11px] font-mono font-black px-2 py-0.5 bg-black text-white border-2 border-black">
                     STAGE {stage.step}
                   </span>
-                  <div className={`w-9 h-9 rounded-[14px] bg-gradient-to-br ${stage.color} flex items-center justify-center shadow-md`}>
-                    <Icon className="w-4 h-4 text-white" />
+                  <div className={`w-10 h-10 border-3 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_#000] ${stage.color}`}>
+                    <Icon className="w-5 h-5 stroke-[3px]" />
                   </div>
                 </div>
-                <h4 className="font-black text-sm text-clay-foreground group-hover:text-clay-accent transition-colors"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}>
+                <h4 className="font-black text-sm uppercase text-black group-hover:text-[#FF6B6B] transition-colors">
                   {stage.title}
                 </h4>
-                <p className="text-[11px] text-clay-muted mt-1 leading-relaxed font-medium">
+                <p className="text-xs font-bold text-black/70 mt-1.5 leading-relaxed">
                   {stage.desc}
                 </p>
               </div>
 
               {idx < STAGES.length - 1 && (
-                <div className="hidden lg:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-violet-300 to-violet-500 flex items-center justify-center text-white shadow-md">
-                    <ArrowRight className="w-2.5 h-2.5" />
+                <div className="hidden lg:block absolute -right-3.5 top-1/2 -translate-y-1/2 z-20">
+                  <div className="w-6 h-6 bg-black text-white border-2 border-black flex items-center justify-center">
+                    <ArrowRight className="w-3.5 h-3.5 stroke-[3px]" />
                   </div>
                 </div>
               )}

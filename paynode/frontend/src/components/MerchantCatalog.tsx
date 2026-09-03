@@ -83,7 +83,7 @@ export const MerchantCatalog: React.FC = () => {
   };
 
   const handleDeleteProduct = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    if (!window.confirm("Are you sure you want to delete this product from the inventory?")) return;
     try {
       const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
       if (res.ok) {
@@ -101,7 +101,7 @@ export const MerchantCatalog: React.FC = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    setUploadStatus("Uploading & ingesting CSV catalog into FastMCP...");
+    setUploadStatus("UPLOADING & INGESTING CSV CATALOG INTO FASTMCP...");
     try {
       const res = await fetch('/api/products/upload-csv', {
         method: 'POST',
@@ -109,13 +109,13 @@ export const MerchantCatalog: React.FC = () => {
       });
       if (res.ok) {
         const data = await res.json();
-        setUploadStatus(`✅ Successfully imported ${data.count} products into live MCP catalog!`);
+        setUploadStatus(`✅ IMPORTED ${data.count} PRODUCTS DIRECTLY TO LIVE MCP CATALOG!`);
         fetchProducts();
       } else {
-        setUploadStatus("❌ Failed to parse CSV file.");
+        setUploadStatus("❌ FAILED TO PARSE CSV FILE.");
       }
     } catch (err) {
-      setUploadStatus("❌ Error uploading file.");
+      setUploadStatus("❌ ERROR UPLOADING FILE.");
     }
     setTimeout(() => setUploadStatus(null), 6000);
   };
@@ -139,11 +139,11 @@ export const MerchantCatalog: React.FC = () => {
   const categories = ['All', 'Electronics', 'Audio', 'Gaming', 'Accessories'];
 
   const CATEGORY_COLORS: Record<string, string> = {
-    'All': 'from-violet-400 to-violet-600',
-    'Electronics': 'from-blue-400 to-blue-600',
-    'Audio': 'from-pink-400 to-pink-600',
-    'Gaming': 'from-purple-400 to-purple-600',
-    'Accessories': 'from-cyan-400 to-cyan-600',
+    'All': 'bg-[#FFD93D]',
+    'Electronics': 'bg-[#38BDF8]',
+    'Audio': 'bg-[#FF6B6B] text-white',
+    'Gaming': 'bg-[#C4B5FD]',
+    'Accessories': 'bg-[#10B981]',
   };
 
   const filteredProducts = products.filter(p => {
@@ -158,68 +158,62 @@ export const MerchantCatalog: React.FC = () => {
     <div className="space-y-8">
       
       {/* Top Banner */}
-      <div className="clay-card p-7 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden">
-        <div className="absolute -right-16 -top-16 w-56 h-56 bg-[#7C3AED]/6 rounded-full blur-3xl pointer-events-none clay-blob" />
-        
-        <div className="max-w-xl relative z-10">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-violet-50 text-violet-600 text-xs font-bold mb-3 shadow-clayCard">
-            <Layers className="w-3.5 h-3.5 text-pink-500" />
-            <span style={{ fontFamily: 'Nunito, sans-serif' }}>Storefront & MCP Inventory Bridge</span>
+      <div className="neo-card p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 bg-white relative overflow-hidden">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#C4B5FD] border-3 border-black text-black text-xs font-black uppercase mb-3 shadow-[3px_3px_0px_0px_#000] rotate-[-1deg]">
+            <Layers className="w-3.5 h-3.5 stroke-[3px]" />
+            <span>INVENTORY & MCP DISCOVERY ENGINE</span>
           </div>
-          <h2 className="text-2xl font-black text-clay-foreground tracking-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            Merchant Product Catalog
+          <h2 className="text-3xl font-black text-black uppercase tracking-tight">
+            MERCHANT PRODUCT CATALOG
           </h2>
-          <p className="text-xs text-clay-muted mt-1.5 leading-relaxed font-medium">
-            All items in this inventory are immediately exposed to autonomous AI buyers via FastMCP tools.
+          <p className="text-xs font-bold text-black/75 mt-1.5 uppercase tracking-wide">
+            Live inventory exposed via FastMCP tools (search_products, get_details, negotiate_price).
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 relative z-10">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={downloadSampleCSV}
-            className="px-5 py-3 rounded-[20px] bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5 text-clay-muted text-xs font-bold flex items-center space-x-2 transition-all active:scale-[0.96] active:shadow-clayPressed"
-            style={{ fontFamily: 'Nunito, sans-serif' }}
+            className="neo-btn neo-btn-white px-4 py-2.5 text-xs"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Sample CSV</span>
+            <Download className="w-4 h-4 mr-2 stroke-[3px]" />
+            <span>SAMPLE CSV</span>
           </button>
 
-          <label className="cursor-pointer px-5 py-3 rounded-[20px] bg-violet-50 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5 text-violet-600 text-xs font-bold flex items-center space-x-2 transition-all active:scale-[0.96] active:shadow-clayPressed"
-            style={{ fontFamily: 'Nunito, sans-serif' }}
-          >
-            <Upload className="w-3.5 h-3.5" />
-            <span>Import CSV</span>
+          <label className="cursor-pointer neo-btn neo-btn-secondary px-4 py-2.5 text-xs">
+            <Upload className="w-4 h-4 mr-2 stroke-[3px]" />
+            <span>IMPORT CSV</span>
             <input type="file" accept=".csv" onChange={handleFileUpload} className="hidden" />
           </label>
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-6 py-3 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white text-xs font-bold shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed flex items-center space-x-2 transition-all"
-            style={{ fontFamily: 'Nunito, sans-serif' }}
+            className="neo-btn neo-btn-primary px-5 py-2.5 text-xs"
           >
-            <Plus className="w-4 h-4" />
-            <span>Add Product</span>
+            <Plus className="w-4 h-4 mr-1.5 stroke-[3px]" />
+            <span>ADD PRODUCT</span>
           </button>
         </div>
       </div>
 
       {uploadStatus && (
-        <div className="p-5 rounded-[24px] bg-violet-50 shadow-clayCard text-xs font-bold text-violet-600 flex items-center space-x-2">
-          <Sparkles className="w-4 h-4 text-pink-500" />
+        <div className="p-4 bg-[#FFD93D] border-4 border-black text-xs font-black text-black flex items-center space-x-2 shadow-[4px_4px_0px_0px_#000] uppercase">
+          <Sparkles className="w-4 h-4 stroke-[3px]" />
           <span>{uploadStatus}</span>
         </div>
       )}
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         <div className="relative w-full sm:w-96">
-          <Search className="w-4 h-4 text-clay-muted absolute left-5 top-4 pointer-events-none" />
+          <Search className="w-5 h-5 text-black stroke-[3px] absolute left-4 top-3.5 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search products, category, SKU..."
-            className="w-full pl-12 pr-5 py-3.5 h-14 rounded-[20px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm font-medium"
+            placeholder="SEARCH PRODUCTS, SKU, CATEGORY..."
+            className="w-full pl-12 pr-4 py-3 neo-input text-xs font-bold uppercase"
           />
         </div>
 
@@ -228,12 +222,11 @@ export const MerchantCatalog: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2.5 rounded-[20px] text-xs font-bold transition-all active:scale-[0.95] ${
+              className={`px-4 py-2 border-3 border-black text-xs font-black uppercase transition-all ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white shadow-clayButton'
-                  : 'bg-white/80 text-clay-muted shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5'
+                  ? 'bg-black text-[#FFD93D] shadow-[4px_4px_0px_0px_#FF6B6B] -translate-y-1'
+                  : 'bg-white text-black hover:bg-[#FFD93D] shadow-[3px_3px_0px_0px_#000] active:translate-x-0.5 active:translate-y-0.5'
               }`}
-              style={{ fontFamily: 'Nunito, sans-serif' }}
             >
               {cat}
             </button>
@@ -245,98 +238,93 @@ export const MerchantCatalog: React.FC = () => {
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((n) => (
-            <div key={n} className="h-72 rounded-[32px] bg-white/40 animate-pulse shadow-clayCard" />
+            <div key={n} className="h-80 bg-white border-4 border-black shadow-neo animate-pulse" />
           ))}
         </div>
       ) : filteredProducts.length === 0 ? (
-        <div className="clay-card p-16 text-center">
-          <Boxes className="w-14 h-14 text-clay-muted/40 mx-auto mb-3" />
-          <h3 className="text-lg font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>No products match your criteria</h3>
-          <p className="text-xs text-clay-muted mt-1 font-medium">Try clearing search filters or import a CSV catalog.</p>
+        <div className="neo-card p-16 text-center bg-white">
+          <Boxes className="w-16 h-16 text-black stroke-[2.5px] mx-auto mb-4" />
+          <h3 className="text-xl font-black text-black uppercase">NO PRODUCTS MATCH CRITERIA</h3>
+          <p className="text-xs font-bold text-black/60 mt-1 uppercase">Try clearing search filters or import a CSV catalog.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => {
             const priceINR = (product.price / 100).toFixed(2);
             const isOverGuardrail = product.price > 100000;
-            const catColor = CATEGORY_COLORS[product.category] || CATEGORY_COLORS['Electronics'];
+            const catBadgeClass = CATEGORY_COLORS[product.category] || 'bg-white';
 
             return (
               <div
                 key={product.id}
-                className="clay-card-interactive p-6 flex flex-col justify-between relative group overflow-hidden"
+                className="neo-card-interactive p-5 flex flex-col justify-between group relative"
               >
-                {/* Decorative orb */}
-                <div className={`absolute -top-8 -right-8 w-28 h-28 bg-gradient-to-br ${catColor} opacity-[0.06] rounded-full blur-2xl group-hover:opacity-[0.12] transition-all pointer-events-none`} />
-
-                <div className="relative z-10">
-                  {/* Image & Badges */}
-                  <div className="relative h-44 rounded-[24px] overflow-hidden bg-clay-inputBg shadow-clayPressed mb-4 flex items-center justify-center">
+                <div>
+                  {/* Image Container with Thick Border */}
+                  <div className="relative h-48 border-4 border-black bg-[#FFFDF5] mb-4 overflow-hidden flex items-center justify-center">
                     {product.image_url ? (
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                         onError={(e) => {
                           (e.target as HTMLElement).style.display = 'none';
                         }}
                       />
                     ) : (
-                      <Package className="w-12 h-12 text-clay-muted/30" />
+                      <Package className="w-16 h-16 text-black/30 stroke-[2px]" />
                     )}
 
-                    <div className="absolute top-3 left-3">
-                      <span className={`px-3 py-1 rounded-full bg-gradient-to-br ${catColor} text-white text-[10px] font-black shadow-md`}
-                        style={{ fontFamily: 'Nunito, sans-serif' }}>
+                    {/* Top Badges */}
+                    <div className="absolute top-2 left-2">
+                      <span className={`px-2.5 py-0.5 border-2 border-black font-black text-[10px] uppercase shadow-[2px_2px_0px_0px_#000] ${catBadgeClass}`}>
                         {product.category}
                       </span>
                     </div>
 
                     {isOverGuardrail && (
-                      <div className="absolute top-3 right-3">
-                        <span className="px-3 py-1 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-white text-[10px] font-black shadow-md"
-                          style={{ fontFamily: 'Nunito, sans-serif' }}>
-                          &gt; ₹1,000 Cap
+                      <div className="absolute top-2 right-2">
+                        <span className="px-2.5 py-0.5 bg-[#FF6B6B] text-white border-2 border-black font-black text-[10px] uppercase shadow-[2px_2px_0px_0px_#000]">
+                          &gt; ₹1,000 CAP
                         </span>
                       </div>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-bold text-clay-muted">{product.sku || 'SKU-GEN'}</span>
-                    <span className="text-[10px] font-bold text-emerald-500 bg-emerald-50 px-2.5 py-0.5 rounded-full shadow-sm"
-                      style={{ fontFamily: 'Nunito, sans-serif' }}>
-                      {product.stock} in stock
+                  {/* SKU & Stock */}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] font-mono font-bold text-black/60 uppercase">
+                      {product.sku || 'SKU-AUTO'}
+                    </span>
+                    <span className="text-[11px] font-black uppercase px-2 py-0.5 bg-[#10B981]/20 text-black border-2 border-black">
+                      {product.stock} IN STOCK
                     </span>
                   </div>
 
-                  <h3 className="font-black text-clay-foreground text-base line-clamp-1 group-hover:text-clay-accent transition-colors"
-                    style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <h3 className="font-black text-black text-lg uppercase leading-tight group-hover:text-[#FF6B6B] transition-colors line-clamp-1">
                     {product.name}
                   </h3>
-                  <p className="text-xs text-clay-muted mt-1.5 line-clamp-2 leading-relaxed font-medium">
-                    {product.description || 'No description provided.'}
+                  <p className="text-xs font-bold text-black/70 mt-2 line-clamp-2 leading-relaxed">
+                    {product.description || 'No product description provided.'}
                   </p>
                 </div>
 
-                {/* Footer Price & Actions */}
-                <div className="mt-5 pt-4 border-t border-violet-100/50 flex items-center justify-between relative z-10">
+                {/* Footer Price & Delete Action */}
+                <div className="mt-6 pt-4 border-t-3 border-black flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-clay-muted font-bold block" style={{ fontFamily: 'Nunito, sans-serif' }}>LISTED PRICE</span>
-                    <div className="text-lg font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                    <span className="text-[10px] font-black uppercase text-black/60 block">LISTED PRICE</span>
+                    <div className="text-2xl font-black text-black font-mono">
                       ₹{priceINR}
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => handleDeleteProduct(product.id)}
-                      className="p-2.5 rounded-[16px] bg-rose-50 hover:bg-rose-100 text-rose-500 transition-all shadow-clayCard hover:shadow-clayCardHover active:scale-[0.92] active:shadow-clayPressed"
-                      title="Delete Product"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => handleDeleteProduct(product.id)}
+                    className="p-2.5 bg-white border-3 border-black text-black hover:bg-[#FF6B6B] hover:text-white shadow-[3px_3px_0px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                    title="Delete Product"
+                  >
+                    <Trash2 className="w-4 h-4 stroke-[3px]" />
+                  </button>
                 </div>
 
               </div>
@@ -347,37 +335,37 @@ export const MerchantCatalog: React.FC = () => {
 
       {/* Add Product Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#332F3A]/40 backdrop-blur-md">
-          <div className="rounded-[32px] bg-white/95 backdrop-blur-xl p-7 sm:p-8 w-full max-w-lg relative shadow-clayDeep">
-            <div className="flex items-center justify-between pb-4 border-b border-violet-100/50">
-              <h3 className="text-base font-black text-clay-foreground flex items-center space-x-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
-                <Plus className="w-4 h-4 text-clay-accent" />
-                <span>Add Product to Catalog</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+          <div className="border-6 border-black bg-[#FFFDF5] p-6 sm:p-8 w-full max-w-lg shadow-neo-xl relative">
+            <div className="flex items-center justify-between pb-4 border-b-4 border-black">
+              <h3 className="text-lg font-black uppercase text-black flex items-center space-x-2">
+                <Plus className="w-5 h-5 stroke-[3px]" />
+                <span>ADD PRODUCT TO CATALOG</span>
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="p-2 rounded-[12px] text-clay-muted hover:text-clay-foreground hover:bg-clay-inputBg transition-all"
+                className="p-1 border-2 border-black bg-white hover:bg-[#FF6B6B] hover:text-white text-black font-black"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 stroke-[3px]" />
               </button>
             </div>
 
             <form onSubmit={handleCreateProduct} className="mt-5 space-y-4 text-xs">
               <div>
-                <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Product Name *</label>
+                <label className="block text-black font-black uppercase mb-1">PRODUCT NAME *</label>
                 <input
                   type="text"
                   required
                   value={newProduct.name}
                   onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                  placeholder="e.g. Logitech MX Master 3S"
-                  className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm"
+                  placeholder="E.G. LOGITECH MX MASTER 3S"
+                  className="w-full px-4 py-2.5 neo-input font-bold"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Price (₹ INR) *</label>
+                  <label className="block text-black font-black uppercase mb-1">PRICE (₹ INR) *</label>
                   <input
                     type="number"
                     step="0.01"
@@ -385,85 +373,83 @@ export const MerchantCatalog: React.FC = () => {
                     value={newProduct.price_inr}
                     onChange={(e) => setNewProduct({ ...newProduct, price_inr: e.target.value })}
                     placeholder="799.00"
-                    className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm"
+                    className="w-full px-4 py-2.5 neo-input font-mono font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Category</label>
+                  <label className="block text-black font-black uppercase mb-1">CATEGORY</label>
                   <select
                     value={newProduct.category}
                     onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
-                    className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground text-sm appearance-none"
+                    className="w-full px-4 py-2.5 neo-input font-black uppercase"
                   >
-                    <option value="Electronics">Electronics</option>
-                    <option value="Audio">Audio</option>
-                    <option value="Gaming">Gaming</option>
-                    <option value="Accessories">Accessories</option>
+                    <option value="Electronics">ELECTRONICS</option>
+                    <option value="Audio">AUDIO</option>
+                    <option value="Gaming">GAMING</option>
+                    <option value="Accessories">ACCESSORIES</option>
                   </select>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Stock Level</label>
+                  <label className="block text-black font-black uppercase mb-1">STOCK UNITS</label>
                   <input
                     type="number"
                     value={newProduct.stock}
                     onChange={(e) => setNewProduct({ ...newProduct, stock: parseInt(e.target.value) || 0 })}
-                    className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground text-sm"
+                    className="w-full px-4 py-2.5 neo-input font-mono font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>SKU</label>
+                  <label className="block text-black font-black uppercase mb-1">SKU CODE</label>
                   <input
                     type="text"
                     value={newProduct.sku}
                     onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })}
                     placeholder="AUT-GEN"
-                    className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm"
+                    className="w-full px-4 py-2.5 neo-input font-mono font-bold uppercase"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Image URL</label>
+                <label className="block text-black font-black uppercase mb-1">IMAGE URL</label>
                 <input
                   type="url"
                   value={newProduct.image_url}
                   onChange={(e) => setNewProduct({ ...newProduct, image_url: e.target.value })}
                   placeholder="https://images.unsplash.com/..."
-                  className="w-full px-5 py-3 h-12 rounded-[16px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm"
+                  className="w-full px-4 py-2.5 neo-input font-mono text-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-clay-foreground font-bold mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>Description</label>
+                <label className="block text-black font-black uppercase mb-1">DESCRIPTION</label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={newProduct.description}
                   onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
                   placeholder="Product specifications..."
-                  className="w-full px-5 py-3 rounded-[16px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm"
+                  className="w-full px-4 py-2.5 neo-input"
                 />
               </div>
 
-              <div className="pt-3 flex justify-end space-x-2.5">
+              <div className="pt-3 flex justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-5 py-3 rounded-[20px] bg-white/80 text-clay-muted shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5 font-bold transition-all active:scale-[0.96] active:shadow-clayPressed"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}
+                  className="neo-btn neo-btn-white px-5 py-2.5 text-xs"
                 >
-                  Cancel
+                  CANCEL
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white font-bold shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed transition-all"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}
+                  className="neo-btn neo-btn-primary px-6 py-2.5 text-xs"
                 >
-                  Save Product
+                  SAVE PRODUCT
                 </button>
               </div>
             </form>

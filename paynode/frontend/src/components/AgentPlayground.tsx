@@ -12,29 +12,29 @@ const PRESET_INTENTS = [
     title: "Instant Purchase Flow",
     intent: "Buy a wireless mouse under ₹1000",
     desc: "Discovers Logitech M330 (₹799) & captures Razorpay payment autonomously.",
-    tag: "Happy Path",
-    color: "from-emerald-400 to-emerald-600"
+    tag: "HAPPY PATH",
+    tagColor: "bg-[#10B981] text-black"
   },
   {
     title: "Algorithmic Price Bargaining",
     intent: "Negotiate and buy Anker 5-in-1 USB-C Hub Adapter",
     desc: "Applies merchant bounded discount formula (80% floor & midpoint counter).",
-    tag: "Bargaining",
-    color: "from-purple-400 to-purple-600"
+    tag: "BARGAINING",
+    tagColor: "bg-[#C4B5FD] text-black"
   },
   {
     title: "₹1,000 Safety Gate Intervention",
     intent: "Buy Keychron K2 Mechanical Keyboard",
     desc: "Attempts purchase of ₹4,499 item — intercepted & blocked by guardrail.",
-    tag: "Security Gate",
-    color: "from-amber-400 to-amber-600"
+    tag: "SECURITY GATE",
+    tagColor: "bg-[#FF6B6B] text-white"
   },
   {
     title: "Decline & Graceful Fallback",
     intent: "Buy braided fast charging cable and simulate failure recovery",
     desc: "Handles card decline and auto-recovers via secondary UPI rails.",
-    tag: "Fault Tolerance",
-    color: "from-sky-400 to-sky-600"
+    tag: "FAULT TOLERANCE",
+    tagColor: "bg-[#38BDF8] text-black"
   }
 ];
 
@@ -87,55 +87,55 @@ export const AgentPlayground: React.FC = () => {
   return (
     <div className="space-y-8">
       
-      {/* ===== Top HUD Banner ===== */}
-      <div className="clay-card p-8 sm:p-10 relative overflow-hidden">
-        {/* Decorative blobs */}
-        <div className="absolute -right-20 -top-20 w-72 h-72 bg-[#7C3AED]/8 rounded-full blur-3xl pointer-events-none clay-blob" />
-        <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-[#EC4899]/8 rounded-full blur-3xl pointer-events-none clay-blob-alt animation-delay-2000" />
+      {/* ===== Hero Banner ===== */}
+      <div className="neo-card p-8 sm:p-10 relative overflow-hidden bg-white">
+        {/* Halftone accent corners */}
+        <div className="absolute -right-8 -top-8 w-40 h-40 bg-halftone opacity-30 pointer-events-none" />
+        <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-halftone opacity-20 pointer-events-none" />
         
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-violet-50 text-violet-600 text-xs font-bold mb-4 shadow-clayCard">
-              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
-              <span style={{ fontFamily: 'Nunito, sans-serif' }}>x402 / Universal Agentic Payments Protocol</span>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#FFD93D] border-3 border-black text-black font-black text-xs uppercase tracking-wider mb-4 shadow-[3px_3px_0px_0px_#000] rotate-[-1deg]">
+              <Sparkles className="w-3.5 h-3.5 stroke-[3px]" />
+              <span>X402 / UNIVERSAL AGENTIC PAYMENTS PROTOCOL</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl font-black text-clay-foreground tracking-tight leading-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
-              Autonomous Commerce{' '}
-              <span className="clay-text-gradient">Intelligence Studio</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-black leading-none">
+              AUTONOMOUS COMMERCE <br />
+              <span className="bg-[#FF6B6B] text-white px-2 py-0.5 border-4 border-black inline-block mt-2 rotate-1 shadow-[4px_4px_0px_0px_#000]">
+                INTELLIGENCE STUDIO
+              </span>
             </h1>
 
-            <p className="mt-3 text-sm text-clay-muted leading-relaxed font-medium">
-              Dispatch high-level shopping goals to the autonomous buyer agent. PayNode manages multi-step tool discovery, bounded discount negotiations, strict financial safety gates, and Razorpay cryptographic settlement.
+            <p className="mt-4 text-base font-bold text-black/80 leading-relaxed max-w-xl">
+              Dispatch high-level commercial intents to the autonomous buyer agent. PayNode executes multi-step catalog queries, enforces deterministic ₹1,000 limits, and settles transactions on Razorpay rails.
             </p>
           </div>
 
           {/* Quick Telemetry Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:w-64 flex-shrink-0">
-            <div className="p-4 rounded-[24px] bg-white/80 shadow-clayCard flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-[16px] bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <ShieldCheck className="w-5 h-5 text-white" />
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:w-72 flex-shrink-0">
+            <div className="p-4 bg-[#FFD93D] border-4 border-black shadow-[6px_6px_0px_0px_#000] rotate-1">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black uppercase text-black tracking-wider">SAFETY GATE</span>
+                <ShieldCheck className="w-5 h-5 stroke-[3px] text-black" />
               </div>
-              <div>
-                <span className="text-xs font-bold text-clay-muted" style={{ fontFamily: 'Nunito, sans-serif' }}>Safety Gate</span>
-                <div className="text-sm font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>₹1,000 Cap</div>
-              </div>
+              <div className="text-2xl font-black text-black mt-1">₹1,000 MAX</div>
+              <span className="text-[11px] font-bold text-black/75 uppercase tracking-wide">Deterministic Rule</span>
             </div>
 
-            <div className="p-4 rounded-[24px] bg-white/80 shadow-clayCard flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-[16px] bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-md flex-shrink-0">
-                <Zap className="w-5 h-5 text-white" />
+            <div className="p-4 bg-[#C4B5FD] border-4 border-black shadow-[6px_6px_0px_0px_#000] -rotate-1">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-black uppercase text-black tracking-wider">MCP RAILS</span>
+                <Zap className="w-5 h-5 stroke-[3px] text-black" />
               </div>
-              <div>
-                <span className="text-xs font-bold text-clay-muted" style={{ fontFamily: 'Nunito, sans-serif' }}>MCP Tools</span>
-                <div className="text-sm font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>6 Active</div>
-              </div>
+              <div className="text-2xl font-black text-black mt-1">6 ACTIVE TOOLS</div>
+              <span className="text-[11px] font-bold text-black/75 uppercase tracking-wide">Razorpay Integration</span>
             </div>
           </div>
         </div>
 
         {/* Preset Intent Triggers */}
-        <div className="relative z-10 mt-8 pt-6 border-t border-violet-100/60 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div className="relative z-10 mt-10 pt-6 border-t-4 border-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {PRESET_INTENTS.map((preset, idx) => (
             <button
               key={idx}
@@ -144,20 +144,19 @@ export const AgentPlayground: React.FC = () => {
                 handleRunAgent(preset.intent);
               }}
               disabled={isRunning}
-              className="text-left p-5 rounded-[24px] bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-1 active:scale-[0.96] active:shadow-clayPressed transition-all text-xs group flex flex-col justify-between disabled:opacity-50 relative overflow-hidden"
+              className="text-left p-4 bg-white border-4 border-black shadow-[5px_5px_0px_0px_#000] hover:shadow-[8px_8px_0px_0px_#000] hover:-translate-y-1 active:translate-x-1 active:translate-y-1 active:shadow-none transition-all group flex flex-col justify-between disabled:opacity-50"
             >
               <div>
-                <div className="flex items-center justify-between mb-2.5">
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold text-white bg-gradient-to-br shadow-md" style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}>
-                    <span className={`absolute inset-0 rounded-full bg-gradient-to-br ${preset.color}`} />
-                    <span className="relative z-10">{preset.tag}</span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`px-2.5 py-0.5 border-2 border-black font-black text-[10px] tracking-wider uppercase ${preset.tagColor}`}>
+                    {preset.tag}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-clay-muted group-hover:text-clay-accent group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-black stroke-[3px] group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div className="font-extrabold text-clay-foreground group-hover:text-clay-accent transition-colors" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                <div className="font-black text-black uppercase text-sm group-hover:text-[#FF6B6B] transition-colors leading-tight">
                   {preset.title}
                 </div>
-                <p className="text-[11px] text-clay-muted mt-1.5 leading-relaxed font-medium">
+                <p className="text-xs font-bold text-black/70 mt-2 leading-relaxed">
                   {preset.desc}
                 </p>
               </div>
@@ -166,17 +165,19 @@ export const AgentPlayground: React.FC = () => {
         </div>
       </div>
 
-      {/* ===== Interactive Command Center Bar ===== */}
-      <div className="clay-card p-6 sm:p-8 space-y-4">
+      {/* ===== Command Center Form ===== */}
+      <div className="neo-card p-6 sm:p-8 space-y-5 bg-[#FFFDF5]">
         
-        {/* Model Provider Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-violet-100/50">
+        {/* Model Engine Selector */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b-4 border-black">
           <div className="flex items-center space-x-2">
-            <Sliders className="w-4 h-4 text-clay-accent" />
-            <span className="text-xs font-black text-clay-foreground uppercase tracking-wider" style={{ fontFamily: 'Nunito, sans-serif' }}>Agent Intelligence Engine</span>
+            <Sliders className="w-5 h-5 stroke-[3px] text-black" />
+            <span className="text-xs font-black uppercase tracking-wider text-black">
+              AGENT INTELLIGENCE ENGINE
+            </span>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-wrap gap-y-2">
             {[
               { id: 'gemini', label: 'Gemini 2.5 Flash' },
               { id: 'claude', label: 'Claude Schema' },
@@ -186,12 +187,11 @@ export const AgentPlayground: React.FC = () => {
                 key={m.id}
                 onClick={() => setModelProvider(m.id as any)}
                 disabled={isRunning}
-                className={`px-4 py-2 rounded-[20px] text-xs font-bold transition-all ${
+                className={`px-3.5 py-1.5 border-3 border-black text-xs font-black uppercase tracking-wider transition-all ${
                   modelProvider === m.id
-                    ? 'bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white shadow-clayButton'
-                    : 'bg-clay-inputBg text-clay-muted shadow-clayPressed hover:text-clay-foreground'
+                    ? 'bg-[#FFD93D] text-black shadow-[3px_3px_0px_0px_#000] -translate-y-0.5'
+                    : 'bg-white text-black hover:bg-black/5 active:translate-x-0.5 active:translate-y-0.5'
                 }`}
-                style={{ fontFamily: 'Nunito, sans-serif' }}
               >
                 <span>{m.label}</span>
               </button>
@@ -199,7 +199,7 @@ export const AgentPlayground: React.FC = () => {
           </div>
         </div>
 
-        {/* Input Prompt Form */}
+        {/* Input & Dispatch Button */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -207,36 +207,35 @@ export const AgentPlayground: React.FC = () => {
           }}
           className="space-y-4"
         >
-          <div className="flex flex-col md:flex-row gap-3 items-stretch">
+          <div className="flex flex-col md:flex-row gap-4 items-stretch">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                <Bot className="w-5 h-5 text-clay-accent" />
+                <Bot className="w-6 h-6 text-black stroke-[3px]" />
               </div>
               <input
                 type="text"
                 value={intent}
                 onChange={(e) => setIntent(e.target.value)}
-                placeholder="Type autonomous intent: e.g., 'Find an Anker USB-C hub under ₹1000, negotiate price, and pay'..."
+                placeholder="TYPE COMMERCIAL INTENT: E.G., 'BUY A WIRELESS MOUSE UNDER ₹1000'..."
                 disabled={isRunning}
-                className="w-full pl-14 pr-5 py-4 h-16 rounded-[20px] clay-input text-clay-foreground placeholder-clay-muted/60 text-sm font-medium"
+                className="w-full pl-14 pr-5 py-4 h-16 neo-input text-black placeholder-black/40 text-sm font-bold uppercase tracking-tight"
               />
             </div>
 
             <button
               type="submit"
               disabled={isRunning || !intent.trim()}
-              className="px-8 py-4 h-16 rounded-[20px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white font-bold text-sm shadow-clayButton hover:shadow-clayButtonHover hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed flex items-center justify-center space-x-2 transition-all disabled:opacity-50 min-w-[160px]"
-              style={{ fontFamily: 'Nunito, sans-serif' }}
+              className="px-8 py-4 h-16 neo-btn neo-btn-primary text-sm font-black flex items-center justify-center space-x-2 min-w-[200px] disabled:opacity-50"
             >
               {isRunning ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin" />
-                  <span>Reasoning...</span>
+                  <RefreshCw className="w-5 h-5 stroke-[3px] animate-spin" />
+                  <span>REASONING...</span>
                 </>
               ) : (
                 <>
-                  <span>Dispatch Agent</span>
-                  <Send className="w-4 h-4" />
+                  <span>DISPATCH AGENT</span>
+                  <Send className="w-5 h-5 stroke-[3px]" />
                 </>
               )}
             </button>
@@ -246,100 +245,98 @@ export const AgentPlayground: React.FC = () => {
 
       {/* Error Message */}
       {error && (
-        <div className="p-5 rounded-[24px] bg-rose-50 text-rose-600 text-sm flex items-center space-x-3 shadow-clayCard font-medium">
-          <XCircle className="w-5 h-5 flex-shrink-0" />
+        <div className="p-4 bg-[#FF6B6B] text-white border-4 border-black shadow-[6px_6px_0px_0px_#000] text-sm font-black flex items-center space-x-3 uppercase">
+          <XCircle className="w-6 h-6 stroke-[3px] flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {/* ===== Live Execution Results ===== */}
+      {/* ===== Execution Results & Settlement ===== */}
       <AnimatePresence>
         {traceResult && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="space-y-6"
+            exit={{ opacity: 0, y: -8 }}
+            className="space-y-8"
           >
             
-            {/* Outcome Hero Card */}
-            <div className={`rounded-[32px] p-7 sm:p-8 relative overflow-hidden shadow-clayCard ${
+            {/* Outcome Hero Block */}
+            <div className={`border-4 border-black p-8 shadow-neo-lg relative overflow-hidden ${
               traceResult.guardrail_status === 'VIOLATION_BLOCKED'
-                ? 'bg-gradient-to-br from-amber-50 to-orange-50'
-                : 'bg-gradient-to-br from-emerald-50 to-teal-50'
+                ? 'bg-[#FF6B6B] text-white'
+                : 'bg-[#FFD93D] text-black'
             }`}>
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 <div className="flex items-start space-x-4">
-                  <div className={`p-3.5 rounded-[20px] shadow-clayCard ${
-                    traceResult.guardrail_status === 'VIOLATION_BLOCKED'
-                      ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-white'
-                      : 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white'
-                  }`}>
+                  <div className="w-14 h-14 bg-black text-white flex items-center justify-center border-3 border-black shadow-[4px_4px_0px_0px_#FFF] flex-shrink-0">
                     {traceResult.guardrail_status === 'VIOLATION_BLOCKED' ? (
-                      <ShieldAlert className="w-8 h-8" />
+                      <ShieldAlert className="w-8 h-8 stroke-[3px] text-[#FFD93D]" />
                     ) : (
-                      <CheckCircle2 className="w-8 h-8" />
+                      <CheckCircle2 className="w-8 h-8 stroke-[3px] text-[#10B981]" />
                     )}
                   </div>
 
                   <div>
                     <div className="flex items-center space-x-3 flex-wrap gap-y-2">
-                      <h2 className="text-xl font-black text-clay-foreground tracking-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                      <h2 className="text-2xl font-black uppercase tracking-tight">
                         {traceResult.guardrail_status === 'VIOLATION_BLOCKED'
-                          ? 'Guardrail Intervened — Purchase Blocked'
-                          : 'Transaction Settled & Verified'}
+                          ? 'GUARDRAIL INTERVENED — TRANSACTION BLOCKED'
+                          : 'TRANSACTION SETTLED & VERIFIED ON RAILS'}
                       </h2>
-                      <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/80 text-clay-muted shadow-clayCard">
+                      <span className="text-xs font-black uppercase px-3 py-1 bg-black text-white border-2 border-black">
                         {traceResult.model_used}
                       </span>
                     </div>
 
-                    <p className="mt-2 text-sm text-clay-muted leading-relaxed max-w-3xl font-medium">
+                    <p className="mt-2 text-sm font-bold leading-relaxed max-w-3xl">
                       {traceResult.final_summary}
                     </p>
                   </div>
                 </div>
 
-                {/* Receipt Pill */}
-                <div className="p-5 rounded-[24px] bg-white/80 shadow-clayCard lg:w-72 flex-shrink-0 space-y-2.5">
-                  <div className="flex items-center justify-between text-[11px] font-bold text-clay-muted">
-                    <span className="flex items-center space-x-1.5">
-                      <Receipt className="w-3.5 h-3.5 text-pink-500" />
-                      <span style={{ fontFamily: 'Nunito, sans-serif' }}>RECEIPT</span>
+                {/* Neo-brutalist Invoice Receipt Card */}
+                <div className="p-5 bg-white text-black border-4 border-black shadow-[6px_6px_0px_0px_#000] lg:w-80 flex-shrink-0 space-y-3 font-mono">
+                  <div className="flex items-center justify-between text-xs font-black border-b-3 border-black pb-2">
+                    <span className="flex items-center space-x-1.5 uppercase">
+                      <Receipt className="w-4 h-4 stroke-[3px]" />
+                      <span>OFFICIAL RECEIPT</span>
                     </span>
-                    <span className="text-emerald-500 font-black" style={{ fontFamily: 'Nunito, sans-serif' }}>PAID</span>
+                    <span className="bg-[#10B981] text-black px-2 py-0.5 border-2 border-black text-[10px] font-black uppercase">
+                      PAID
+                    </span>
                   </div>
 
                   {traceResult.order_id && (
-                    <div className="flex items-center justify-between text-xs font-medium">
-                      <span className="text-clay-muted">Order:</span>
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-black/60">ORDER:</span>
                       <button 
                         onClick={() => copyToClipboard(traceResult.order_id!, 'order')}
-                        className="text-clay-accent hover:underline flex items-center space-x-1 font-bold"
+                        className="text-black font-black hover:bg-[#FFD93D] px-1 flex items-center space-x-1"
                       >
                         <span>{traceResult.order_id.slice(0, 14)}...</span>
-                        {copiedKey === 'order' ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                        {copiedKey === 'order' ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                     </div>
                   )}
 
                   {traceResult.payment_id && (
-                    <div className="flex items-center justify-between text-xs font-medium">
-                      <span className="text-clay-muted">Payment:</span>
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-black/60">PAYMENT:</span>
                       <button 
                         onClick={() => copyToClipboard(traceResult.payment_id!, 'pay')}
-                        className="text-emerald-500 hover:underline flex items-center space-x-1 font-bold"
+                        className="text-black font-black hover:bg-[#FFD93D] px-1 flex items-center space-x-1"
                       >
                         <span>{traceResult.payment_id.slice(0, 14)}...</span>
-                        {copiedKey === 'pay' ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                        {copiedKey === 'pay' ? <Check className="w-3.5 h-3.5 text-[#10B981]" /> : <Copy className="w-3.5 h-3.5" />}
                       </button>
                     </div>
                   )}
 
-                  <div className="pt-2.5 border-t border-violet-100/50 flex items-center justify-between">
-                    <span className="text-xs text-clay-muted font-bold" style={{ fontFamily: 'Nunito, sans-serif' }}>Total Settled:</span>
-                    <span className="text-lg font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <div className="pt-2 border-t-3 border-black border-dashed flex items-center justify-between font-sans">
+                    <span className="text-xs font-black uppercase">TOTAL SETTLED:</span>
+                    <span className="text-xl font-black text-black">
                       ₹{traceResult.total_spent_inr.toFixed(2)}
                     </span>
                   </div>
@@ -349,80 +346,84 @@ export const AgentPlayground: React.FC = () => {
             </div>
 
             {/* Neural Decision & Tool Invocation Sequence */}
-            <div className="clay-card p-7 sm:p-8 space-y-5">
-              <div className="flex items-center justify-between">
+            <div className="neo-card p-6 sm:p-8 space-y-6 bg-white">
+              <div className="flex items-center justify-between pb-4 border-b-4 border-black">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2.5 rounded-[16px] bg-gradient-to-br from-violet-400 to-violet-600 text-white shadow-md">
-                    <Terminal className="w-4 h-4" />
+                  <div className="w-10 h-10 bg-black text-white flex items-center justify-center border-2 border-black">
+                    <Terminal className="w-5 h-5 stroke-[3px]" />
                   </div>
                   <div>
-                    <h3 className="text-base font-black text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>
-                      Agent Decision Trace ({traceResult.steps.length} Steps)
+                    <h3 className="text-lg font-black uppercase text-black">
+                      AGENT DECISION TRACE ({traceResult.steps.length} STEPS)
                     </h3>
-                    <p className="text-xs text-clay-muted font-medium">
-                      Step-by-step reasoning, MCP arguments, and responses.
+                    <p className="text-xs font-bold text-black/70 uppercase">
+                      Deterministic tool loops, arguments, and verifiable outcomes
                     </p>
                   </div>
                 </div>
 
-                <div className="text-xs font-bold px-4 py-2 rounded-full bg-white/80 shadow-clayCard text-clay-muted" style={{ fontFamily: 'Nunito, sans-serif' }}>
-                  Latency: <span className="text-clay-accent">{traceResult.elapsed_seconds}s</span>
+                <div className="px-3 py-1 bg-[#C4B5FD] border-3 border-black font-mono text-xs font-black uppercase shadow-[3px_3px_0px_0px_#000]">
+                  TIME: {traceResult.elapsed_seconds}S
                 </div>
               </div>
 
-              <div className="space-y-3.5">
+              <div className="space-y-4">
                 {traceResult.steps.map((step, idx) => (
                   <motion.div
                     key={idx}
-                    initial={{ opacity: 0, x: -12 }}
+                    initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.04 }}
-                    className="p-5 rounded-[24px] bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5 transition-all space-y-3"
+                    transition={{ delay: idx * 0.03 }}
+                    className="p-4 sm:p-5 bg-[#FFFDF5] border-3 border-black shadow-[4px_4px_0px_0px_#000] space-y-3"
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2.5">
-                        <span className="w-7 h-7 rounded-[12px] bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white text-[11px] font-black flex items-center justify-center shadow-md" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <div className="flex items-center space-x-3">
+                        <span className="w-7 h-7 bg-[#FFD93D] border-2 border-black text-black text-xs font-black flex items-center justify-center shadow-[2px_2px_0px_0px_#000]">
                           {step.step}
                         </span>
-                        <span className="text-xs font-bold text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                        <span className="text-sm font-black uppercase text-black">
                           {step.title}
                         </span>
                       </div>
 
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 font-mono">
                         {step.status && (
-                          <span className={`text-[10px] uppercase px-2.5 py-1 rounded-full font-black ${
-                            step.status === 'success' ? 'bg-emerald-50 text-emerald-600' :
-                            step.status === 'blocked_by_guardrail' ? 'bg-amber-50 text-amber-600' :
-                            'bg-rose-50 text-rose-600'
-                          }`} style={{ fontFamily: 'Nunito, sans-serif' }}>
+                          <span className={`text-[10px] uppercase font-black px-2.5 py-0.5 border-2 border-black ${
+                            step.status === 'success' ? 'bg-[#10B981] text-black' :
+                            step.status === 'blocked_by_guardrail' ? 'bg-[#FFD93D] text-black' :
+                            'bg-[#FF6B6B] text-white'
+                          }`}>
                             {step.status.replace(/_/g, ' ')}
                           </span>
                         )}
-                        <span className="text-[11px] text-clay-muted font-medium">
+                        <span className="text-xs text-black/60 font-bold">
                           {step.timestamp}
                         </span>
                       </div>
                     </div>
 
                     {step.thought && (
-                      <p className="text-xs text-clay-muted italic pl-9 border-l-3 border-clay-accent/30 leading-relaxed font-medium">
+                      <p className="text-xs font-bold text-black/85 pl-6 border-l-4 border-[#FF6B6B] py-1 leading-relaxed italic bg-white/50">
                         "{step.thought}"
                       </p>
                     )}
 
                     {step.tool_name && (
-                      <div className="pl-9 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs pt-1">
+                      <div className="pl-6 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs pt-1 font-mono">
                         {step.arguments && (
-                          <div className="p-3.5 rounded-[16px] bg-clay-inputBg shadow-clayPressed text-clay-foreground overflow-x-auto">
-                            <span className="text-pink-500 font-black block mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>ARGS:</span>
-                            <pre className="text-[11px] font-mono text-clay-muted">{JSON.stringify(step.arguments, null, 2)}</pre>
+                          <div className="p-3 bg-white border-2 border-black text-black overflow-x-auto shadow-[3px_3px_0px_0px_#000]">
+                            <span className="text-[#FF6B6B] font-black block mb-1 uppercase font-sans">
+                              ARGS PAYLOAD:
+                            </span>
+                            <pre className="text-[11px] font-bold">{JSON.stringify(step.arguments, null, 2)}</pre>
                           </div>
                         )}
                         {step.result && (
-                          <div className="p-3.5 rounded-[16px] bg-clay-inputBg shadow-clayPressed text-clay-foreground overflow-x-auto">
-                            <span className="text-sky-500 font-black block mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>RESPONSE:</span>
-                            <pre className="text-[11px] font-mono text-clay-muted">{JSON.stringify(step.result, null, 2)}</pre>
+                          <div className="p-3 bg-white border-2 border-black text-black overflow-x-auto shadow-[3px_3px_0px_0px_#000]">
+                            <span className="text-[#38BDF8] font-black block mb-1 uppercase font-sans">
+                              RAIL RESPONSE:
+                            </span>
+                            <pre className="text-[11px] font-bold">{JSON.stringify(step.result, null, 2)}</pre>
                           </div>
                         )}
                       </div>

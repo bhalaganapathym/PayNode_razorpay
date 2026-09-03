@@ -6,32 +6,42 @@ import { MerchantCatalog } from './components/MerchantCatalog';
 import { AuditTrail } from './components/AuditTrail';
 import { AnalyticsView } from './components/AnalyticsView';
 import { ArchitectureExplorer } from './components/ArchitectureExplorer';
+import { Sparkles, ShieldCheck, Zap } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('agent');
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F4F1FA] text-[#332F3A] selection:bg-violet-300 selection:text-violet-900 relative">
-
-      {/* ===== Floating Background Blobs ===== */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden -z-10">
-        <div className="absolute -top-[10%] -left-[10%] h-[60vh] w-[60vh] rounded-full bg-[#8B5CF6]/10 blur-3xl clay-blob" />
-        <div className="absolute -right-[10%] top-[20%] h-[55vh] w-[55vh] rounded-full bg-[#EC4899]/10 blur-3xl clay-blob-alt animation-delay-2000" />
-        <div className="absolute bottom-[5%] left-[30%] h-[50vh] w-[50vh] rounded-full bg-[#0EA5E9]/10 blur-3xl clay-blob-slow animation-delay-4000" />
+    <div className="min-h-screen flex flex-col bg-[#FFFDF5] text-black bg-graph selection:bg-[#FFD93D] selection:text-black relative">
+      
+      {/* Top Retro Marquee Ticker */}
+      <div className="w-full bg-[#FFD93D] border-b-4 border-black py-1.5 overflow-hidden font-black text-xs uppercase tracking-widest flex whitespace-nowrap z-50 shadow-[0px_4px_0px_0px_#000]">
+        <div className="flex animate-marquee space-x-8">
+          <span>⚡ PAYNODE AGENTIC COMMERCE GATEWAY</span>
+          <span>✦ MODEL CONTEXT PROTOCOL (MCP 2.0)</span>
+          <span>🛡️ DETERMINISTIC ₹1,000 SAFETY GUARDRAIL</span>
+          <span>💳 RAZORPAY REAL-TIME RAILS</span>
+          <span>🚀 AUTONOMOUS AI BUYER AGENT</span>
+          <span>⚡ PAYNODE AGENTIC COMMERCE GATEWAY</span>
+          <span>✦ MODEL CONTEXT PROTOCOL (MCP 2.0)</span>
+          <span>🛡️ DETERMINISTIC ₹1,000 SAFETY GUARDRAIL</span>
+          <span>💳 RAZORPAY REAL-TIME RAILS</span>
+          <span>🚀 AUTONOMOUS AI BUYER AGENT</span>
+        </div>
       </div>
 
       {/* Header Bar */}
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Main Content with Animated Tab Transitions */}
+      {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15, ease: "linear" }}
           >
             {activeTab === 'agent' && <AgentPlayground />}
             {activeTab === 'merchant' && <MerchantCatalog />}
@@ -42,17 +52,33 @@ export const App: React.FC = () => {
         </AnimatePresence>
       </main>
 
-      {/* Footer */}
-      <footer className="clay-card mt-12 mx-4 sm:mx-8 mb-6 py-6 px-6 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-sm gap-3">
-          <div className="flex items-center space-x-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-violet-500 to-pink-500 animate-clay-breathe" />
-            <span className="text-clay-muted font-medium" style={{ fontFamily: 'Nunito, sans-serif' }}>
-              PayNode — MCP Gateway for Agentic Commerce
-            </span>
+      {/* Neo-brutalist Footer */}
+      <footer className="border-t-4 border-black bg-[#FFD93D] mt-16 shadow-[0px_-6px_0px_0px_#000]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-black text-[#FFD93D] font-black text-base flex items-center justify-center border-2 border-black rotate-[-3deg] shadow-[3px_3px_0px_0px_#FFF]">
+              P
+            </div>
+            <div>
+              <span className="font-black text-sm uppercase tracking-wider block">
+                PAYNODE // AGENTIC COMMERCE SYSTEM
+              </span>
+              <p className="text-xs font-bold text-black/80">
+                x402 / Universal Autonomous Protocol • FastMCP Architecture
+              </p>
+            </div>
           </div>
-          <div className="text-clay-muted text-xs">
-            <span>₹1,000 Safety Gate • Razorpay Test Rails • FastMCP</span>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="px-3 py-1 bg-white border-2 border-black font-black text-xs uppercase shadow-[3px_3px_0px_0px_#000] rotate-1">
+              ₹1,000 Hard Limit Gate
+            </span>
+            <span className="px-3 py-1 bg-[#C4B5FD] border-2 border-black font-black text-xs uppercase shadow-[3px_3px_0px_0px_#000] -rotate-1">
+              Razorpay Rails Active
+            </span>
+            <span className="px-3 py-1 bg-[#FF6B6B] text-white border-2 border-black font-black text-xs uppercase shadow-[3px_3px_0px_0px_#000]">
+              FastMCP 200 OK
+            </span>
           </div>
         </div>
       </footer>

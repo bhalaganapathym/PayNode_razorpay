@@ -51,32 +51,32 @@ const MCP_TOOLS_LIST = [
 
 const ARCH_NODES = [
   {
-    title: "1. AI Buyer Agent",
+    title: "1. AI BUYER AGENT",
     icon: Cpu,
-    gradient: "from-violet-400 to-violet-600",
-    desc: "Gemini 2.5 Flash / Claude Sonnet model parsing human intent and executing MCP tool loops.",
-    badge: "Caller / Actor"
+    bg: "bg-[#FFD93D]",
+    desc: "Autonomous LLM reasoning loops parsing shopping intents into structured tool invocations.",
+    badge: "ACTOR / CALLER"
   },
   {
-    title: "2. FastMCP Gateway",
+    title: "2. FASTMCP GATEWAY",
     icon: Zap,
-    gradient: "from-pink-400 to-pink-600",
-    desc: "Standard JSON-RPC / stdio & REST bridge server exposing 6 production commerce tools.",
-    badge: "Port 8000"
+    bg: "bg-[#FF6B6B] text-white",
+    desc: "Standard Model Context Protocol server exposing merchant tools via stdio & HTTP bridge.",
+    badge: "PORT 8008"
   },
   {
-    title: "3. Safety Guardrails",
+    title: "3. SAFETY GUARDRAIL",
     icon: Lock,
-    gradient: "from-sky-400 to-sky-600",
-    desc: "Deterministic ₹1,000 autonomous purchase ceiling and 80% merchant discount floor.",
-    badge: "Max ₹1,000 Gate"
+    bg: "bg-[#38BDF8]",
+    desc: "Deterministic financial circuit breaker enforcing max ₹1,000 ceiling without co-signature.",
+    badge: "HARD CEILING"
   },
   {
-    title: "4. Payment Rails",
+    title: "4. RAZORPAY RAILS",
     icon: CreditCard,
-    gradient: "from-emerald-400 to-emerald-600",
-    desc: "Razorpay Orders & Payments APIs with immutable Supabase audit logging.",
-    badge: "Testnet Settled"
+    bg: "bg-[#10B981]",
+    desc: "Orders and Payments APIs capturing settlement with automated UPI rail fallback.",
+    badge: "SETTLED"
   }
 ];
 
@@ -87,48 +87,55 @@ export const ArchitectureExplorer: React.FC = () => {
     <div className="space-y-8">
       
       {/* Top Banner */}
-      <div className="clay-card p-7 sm:p-8 relative overflow-hidden">
-        <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#0EA5E9]/6 rounded-full blur-3xl pointer-events-none clay-blob" />
-        
-        <div className="max-w-2xl relative z-10">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-50 text-sky-600 text-xs font-bold mb-3 shadow-clayCard">
-            <Server className="w-3.5 h-3.5" />
-            <span style={{ fontFamily: 'Nunito, sans-serif' }}>Protocol Specification (x402 / UAP / MCP)</span>
+      <div className="neo-card p-6 sm:p-8 bg-white relative overflow-hidden">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#38BDF8] border-3 border-black text-black text-xs font-black uppercase mb-3 shadow-[3px_3px_0px_0px_#000] rotate-[-1deg]">
+            <Server className="w-3.5 h-3.5 stroke-[3px]" />
+            <span>PROTOCOL SPECIFICATION (X402 / UAP / MCP)</span>
           </div>
-          <h2 className="text-2xl font-black text-clay-foreground tracking-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            PayNode System Architecture
+          <h2 className="text-3xl font-black uppercase text-black tracking-tight">
+            PAYNODE SYSTEM ARCHITECTURE
           </h2>
-          <p className="text-xs text-clay-muted mt-1.5 leading-relaxed font-medium">
-            PayNode establishes standard MCP primitives so any autonomous agent can transact over Razorpay rails with deterministic safety constraints.
+          <p className="text-xs font-bold text-black/75 mt-1.5 uppercase tracking-wide">
+            Model Context Protocol specifications for autonomous AI commerce over Razorpay payment rails.
           </p>
         </div>
       </div>
 
       {/* Protocol Visual Flow Diagram */}
-      <div className="clay-card p-7 sm:p-8 space-y-5">
-        <h3 className="text-base font-black text-clay-foreground flex items-center space-x-2.5" style={{ fontFamily: 'Nunito, sans-serif' }}>
-          <div className="p-2 rounded-[14px] bg-gradient-to-br from-pink-400 to-pink-600 text-white shadow-md">
-            <GitBranch className="w-4 h-4" />
-          </div>
-          <span>Interactive Architecture Topology</span>
-        </h3>
+      <div className="neo-card p-6 sm:p-8 space-y-6 bg-white">
+        <div className="pb-3 border-b-4 border-black">
+          <h3 className="text-xl font-black uppercase text-black flex items-center space-x-2.5">
+            <div className="w-8 h-8 bg-black text-[#FF6B6B] flex items-center justify-center border-2 border-black">
+              <GitBranch className="w-4 h-4 stroke-[3px]" />
+            </div>
+            <span>INTERACTIVE ARCHITECTURE TOPOLOGY</span>
+          </h3>
+          <p className="text-xs font-bold text-black/70 mt-1 uppercase">
+            Four-layer architectural schematic connecting agent intelligence to banking rails
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 pt-2">
           {ARCH_NODES.map((node, idx) => {
             const Icon = node.icon;
             return (
-              <div key={idx} className="p-5 rounded-[24px] bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-1 transition-all space-y-3 relative group">
-                <div className={`w-10 h-10 rounded-[14px] bg-gradient-to-br ${node.gradient} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon className="w-5 h-5 text-white" />
+              <div 
+                key={idx} 
+                className="p-5 bg-[#FFFDF5] border-4 border-black shadow-[6px_6px_0px_0px_#000] hover:shadow-[10px_10px_0px_0px_#000] hover:-translate-y-1 transition-all space-y-3"
+              >
+                <div className="flex items-center justify-between">
+                  <div className={`w-11 h-11 border-3 border-black flex items-center justify-center shadow-[3px_3px_0px_0px_#000] ${node.bg}`}>
+                    <Icon className="w-6 h-6 stroke-[3px]" />
+                  </div>
+                  <span className="text-[10px] font-mono font-black px-2 py-0.5 bg-black text-white border-2 border-black">
+                    {node.badge}
+                  </span>
                 </div>
-                <h4 className="font-black text-sm text-clay-foreground" style={{ fontFamily: 'Nunito, sans-serif' }}>{node.title}</h4>
-                <p className="text-[11px] text-clay-muted leading-relaxed font-medium">
+                <h4 className="font-black text-base uppercase text-black">{node.title}</h4>
+                <p className="text-xs font-bold text-black/75 leading-relaxed">
                   {node.desc}
                 </p>
-                <span className="inline-block text-[10px] font-black px-2.5 py-1 rounded-full bg-violet-50 text-violet-600"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}>
-                  {node.badge}
-                </span>
               </div>
             );
           })}
@@ -136,77 +143,74 @@ export const ArchitectureExplorer: React.FC = () => {
       </div>
 
       {/* MCP Tools Inspector Grid */}
-      <div className="clay-card p-7 sm:p-8 space-y-5">
-        <div>
-          <h3 className="text-base font-black text-clay-foreground flex items-center space-x-2.5" style={{ fontFamily: 'Nunito, sans-serif' }}>
-            <div className="p-2 rounded-[14px] bg-gradient-to-br from-violet-400 to-violet-600 text-white shadow-md">
-              <Terminal className="w-4 h-4" />
+      <div className="neo-card p-6 sm:p-8 space-y-6 bg-white">
+        <div className="pb-3 border-b-4 border-black">
+          <h3 className="text-xl font-black uppercase text-black flex items-center space-x-2.5">
+            <div className="w-8 h-8 bg-black text-[#FFD93D] flex items-center justify-center border-2 border-black">
+              <Terminal className="w-4 h-4 stroke-[3px]" />
             </div>
-            <span>FastMCP Tools Catalog</span>
+            <span>FASTMCP COMMERCE TOOLS CATALOG</span>
           </h3>
-          <p className="text-xs text-clay-muted mt-0.5 font-medium">
-            Select a tool to view its formal signature, guardrail behavior, and underlying rail.
+          <p className="text-xs font-bold text-black/70 mt-1 uppercase">
+            Select an MCP tool to inspect its formal signature, guardrail behavior, and underlying financial rail
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Tool Selector List */}
-          <div className="space-y-2 lg:col-span-1">
+          <div className="space-y-2.5 lg:col-span-1">
             {MCP_TOOLS_LIST.map((tool) => (
               <button
                 key={tool.name}
                 onClick={() => setSelectedTool(tool)}
-                className={`w-full text-left p-4 rounded-[20px] transition-all flex items-center justify-between text-xs active:scale-[0.97] ${
+                className={`w-full text-left p-3.5 border-3 border-black transition-all flex items-center justify-between text-xs active:translate-x-0.5 active:translate-y-0.5 ${
                   selectedTool.name === tool.name
-                    ? 'bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white shadow-clayButton'
-                    : 'bg-white/80 shadow-clayCard hover:shadow-clayCardHover hover:-translate-y-0.5 text-clay-foreground'
+                    ? 'bg-[#FF6B6B] text-white shadow-[4px_4px_0px_0px_#000] -translate-y-0.5'
+                    : 'bg-white text-black hover:bg-[#FFD93D] shadow-[3px_3px_0px_0px_#000]'
                 }`}
               >
                 <div>
-                  <div className={`font-black ${selectedTool.name === tool.name ? 'text-white' : 'text-clay-accent'}`}
-                    style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <div className="font-mono font-black uppercase text-sm">
                     {tool.name}
                   </div>
-                  <div className={`text-[10px] mt-0.5 font-bold ${selectedTool.name === tool.name ? 'text-white/70' : 'text-clay-muted'}`}
-                    style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  <div className="text-[10px] uppercase font-bold mt-0.5 opacity-80">
                     {tool.category}
                   </div>
                 </div>
-                <ArrowRight className={`w-3.5 h-3.5 ${selectedTool.name === tool.name ? 'text-white' : 'text-clay-muted'}`} />
+                <ArrowRight className="w-4 h-4 stroke-[3px]" />
               </button>
             ))}
           </div>
 
           {/* Selected Tool Details Card */}
-          <div className="lg:col-span-2 p-6 sm:p-7 rounded-[24px] bg-white/80 shadow-clayCard space-y-4">
-            <div className="flex items-center justify-between border-b border-violet-100/50 pb-3">
+          <div className="lg:col-span-2 p-6 bg-[#FFFDF5] border-4 border-black shadow-[6px_6px_0px_0px_#000] space-y-4">
+            <div className="flex items-center justify-between border-b-3 border-black pb-3">
               <div>
-                <span className="text-[10px] uppercase px-3 py-1 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 text-violet-600 font-black"
-                  style={{ fontFamily: 'Nunito, sans-serif' }}>
+                <span className="text-[10px] font-black uppercase px-2 py-0.5 bg-[#FFD93D] border-2 border-black">
                   {selectedTool.category}
                 </span>
-                <h4 className="text-lg font-black text-clay-foreground mt-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                <h4 className="text-xl font-black uppercase text-black font-mono mt-2">
                   {selectedTool.name}
                 </h4>
               </div>
               <div className="text-right">
-                <span className="text-[10px] text-clay-muted font-bold block" style={{ fontFamily: 'Nunito, sans-serif' }}>UNDERLYING RAIL</span>
-                <span className="text-xs font-black text-sky-500" style={{ fontFamily: 'Nunito, sans-serif' }}>{selectedTool.rail}</span>
+                <span className="text-[10px] font-black uppercase text-black/60 block">UNDERLYING RAIL</span>
+                <span className="text-xs font-mono font-black text-[#FF6B6B] uppercase">{selectedTool.rail}</span>
               </div>
             </div>
 
-            <div className="space-y-3 text-xs">
+            <div className="space-y-4 text-xs font-mono">
               <div>
-                <span className="text-[11px] font-black text-clay-muted block mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>SIGNATURE:</span>
-                <pre className="p-4 rounded-[16px] bg-clay-inputBg shadow-clayPressed text-pink-500 font-mono text-[11px] overflow-x-auto font-bold">
+                <span className="font-black font-sans uppercase text-black block mb-1.5">TOOL SIGNATURE:</span>
+                <pre className="p-4 bg-white border-3 border-black text-black font-bold text-[11px] overflow-x-auto shadow-[3px_3px_0px_0px_#000]">
                   {selectedTool.signature}
                 </pre>
               </div>
 
               <div>
-                <span className="text-[11px] font-black text-clay-muted block mb-1.5" style={{ fontFamily: 'Nunito, sans-serif' }}>DESCRIPTION:</span>
-                <p className="text-clay-foreground leading-relaxed font-medium">
+                <span className="font-black font-sans uppercase text-black block mb-1.5">SPECIFICATION:</span>
+                <p className="text-black font-bold font-sans text-xs leading-relaxed bg-white border-2 border-black p-3">
                   {selectedTool.desc}
                 </p>
               </div>

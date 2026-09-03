@@ -4,190 +4,173 @@
 
 @layer base {
   body {
-    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-    background-color: #F4F1FA;
-    color: #332F3A;
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    background-color: #FFFDF5;
+    color: #000000;
   }
 
-  /* Nunito for all heading elements */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nunito', system-ui, sans-serif;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.03em;
   }
 }
 
-/* ===========================
-   CLAYMORPHISM UTILITY CLASSES
-   =========================== */
+/* ==========================================================================
+   NEO-BRUTALISM CORE UTILITIES & TEXTURES
+   ========================================================================== */
 
-/* Standard Clay Card (Floating) */
-.clay-card {
-  background: rgba(255, 255, 255, 0.70);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 32px;
-  box-shadow:
-    16px 16px 32px rgba(160, 150, 180, 0.2),
-    -10px -10px 24px rgba(255, 255, 255, 0.9),
-    inset 6px 6px 12px rgba(139, 92, 246, 0.03),
-    inset -6px -6px 12px rgba(255, 255, 255, 1);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* Halftone dot pattern */
+.bg-halftone {
+  background-image: radial-gradient(#000000 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
 }
 
-/* Interactive Clay Card (with hover lift) */
-.clay-card-interactive {
-  background: rgba(255, 255, 255, 0.70);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 32px;
-  box-shadow:
-    16px 16px 32px rgba(160, 150, 180, 0.2),
-    -10px -10px 24px rgba(255, 255, 255, 0.9),
-    inset 6px 6px 12px rgba(139, 92, 246, 0.03),
-    inset -6px -6px 12px rgba(255, 255, 255, 1);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.bg-halftone-dense {
+  background-image: radial-gradient(#000000 2px, transparent 2px);
+  background-size: 16px 16px;
 }
 
-.clay-card-interactive:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    20px 20px 40px rgba(160, 150, 180, 0.3),
-    -12px -12px 28px rgba(255, 255, 255, 1),
-    inset 6px 6px 12px rgba(139, 92, 246, 0.05),
-    inset -6px -6px 12px rgba(255, 255, 255, 1);
+/* Graph paper pattern */
+.bg-graph {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
 }
 
-/* Clay Button (High Convexity) */
-.clay-button {
-  border-radius: 20px;
+/* Neo-brutalist Card */
+.neo-card {
+  background-color: #FFFFFF;
+  border: 4px solid #000000;
+  box-shadow: 8px 8px 0px 0px #000000;
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.neo-card-interactive {
+  background-color: #FFFFFF;
+  border: 4px solid #000000;
+  box-shadow: 8px 8px 0px 0px #000000;
+  transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.neo-card-interactive:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+/* Neo-brutalist Button (Mechanical Push-down) */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 4px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+  transition: all 0.1s ease-out;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+.neo-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+/* Primary Action Button (Hot Red) */
+.neo-btn-primary {
+  background-color: #FF6B6B;
+  color: #FFFFFF;
+}
+.neo-btn-primary:hover {
+  background-color: #FF5252;
+}
+
+/* Secondary Button (Vivid Yellow) */
+.neo-btn-secondary {
+  background-color: #FFD93D;
+  color: #000000;
+}
+.neo-btn-secondary:hover {
+  background-color: #FFCD1A;
+}
+
+/* Outline / Inverted Button */
+.neo-btn-white {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.neo-btn-white:hover {
+  background-color: #F4F1EA;
+}
+
+/* Neo-brutalist Input */
+.neo-input {
+  border: 4px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
   font-weight: 700;
-  letter-spacing: 0.025em;
-  box-shadow:
-    12px 12px 24px rgba(139, 92, 246, 0.3),
-    -8px -8px 16px rgba(255, 255, 255, 0.4),
-    inset 4px 4px 8px rgba(255, 255, 255, 0.4),
-    inset -4px -4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: all 0.15s ease-out;
 }
 
-.clay-button:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    14px 14px 28px rgba(139, 92, 246, 0.4),
-    -10px -10px 20px rgba(255, 255, 255, 0.5),
-    inset 4px 4px 8px rgba(255, 255, 255, 0.5),
-    inset -4px -4px 8px rgba(0, 0, 0, 0.12);
-}
-
-.clay-button:active {
-  transform: scale(0.92);
-  box-shadow:
-    inset 10px 10px 20px #d9d4e3,
-    inset -10px -10px 20px #ffffff;
-}
-
-/* Recessed Clay Input */
-.clay-input {
-  border: none;
-  background: #EFEBF5;
-  border-radius: 16px;
-  box-shadow:
-    inset 10px 10px 20px #d9d4e3,
-    inset -10px -10px 20px #ffffff;
-  transition: all 0.2s ease;
-}
-
-.clay-input:focus {
-  background: #ffffff;
+.neo-input:focus {
+  background-color: #FFD93D;
+  box-shadow: 6px 6px 0px 0px #000000;
   outline: none;
-  box-shadow:
-    inset 8px 8px 16px #e0dbe8,
-    inset -8px -8px 16px #ffffff;
-  ring: 4px;
-  --tw-ring-color: rgba(124, 58, 237, 0.2);
 }
 
-/* Clay Pressed (Recessed Surface) */
-.clay-pressed {
-  box-shadow:
-    inset 10px 10px 20px #d9d4e3,
-    inset -10px -10px 20px #ffffff;
+/* Text Stroke Effect for Display Typography */
+.text-stroke {
+  -webkit-text-stroke: 3px #000000;
+  color: transparent;
 }
 
-/* ===========================
-   CLAY TEXT GRADIENT
-   =========================== */
-.clay-text-gradient {
-  background: linear-gradient(135deg, #332F3A 20%, #7C3AED 60%, #DB2777);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.text-stroke-sm {
+  -webkit-text-stroke: 2px #000000;
+  color: transparent;
 }
 
-/* ===========================
-   BACKGROUND BLOB ANIMATIONS
-   =========================== */
-.clay-blob {
-  animation: clay-float 8s ease-in-out infinite;
+/* Brutalist Badge / Sticker */
+.neo-sticker {
+  border: 3px solid #000000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: 3px 3px 0px 0px #000000;
 }
 
-.clay-blob-alt {
-  animation: clay-float-delayed 10s ease-in-out infinite;
-}
-
-.clay-blob-slow {
-  animation: clay-float-slow 12s ease-in-out infinite;
-}
-
-/* Animation delay utilities */
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* ===========================
-   SCROLLBAR (Clay Theme)
-   =========================== */
+/* Custom Scrollbar (Raw Black & Yellow) */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #EFEBF5;
-  border-radius: 9999px;
+  background: #FFFDF5;
+  border-left: 3px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.25);
-  border-radius: 9999px;
+  background: #FFD93D;
+  border: 3px solid #000000;
+  box-shadow: 2px 2px 0px 0px #000000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.5);
+  background: #FF6B6B;
 }
 
-/* ===========================
-   REDUCED MOTION
-   =========================== */
+/* Reduced Motion Handling */
 @media (prefers-reduced-motion: reduce) {
-  .clay-blob,
-  .clay-blob-alt,
-  .clay-blob-slow {
-    animation: none;
-  }
-
-  .clay-card-interactive:hover {
-    transform: none;
-  }
-
-  .clay-button:hover {
-    transform: none;
-  }
-
-  .clay-button:active {
+  .neo-btn:hover,
+  .neo-btn:active,
+  .neo-card-interactive:hover {
     transform: none;
   }
 }
