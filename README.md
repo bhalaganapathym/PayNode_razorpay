@@ -88,8 +88,8 @@ Create or verify `paynode/.env`:
 GEMINI_API_KEY=your_gemini_api_key
 
 # Razorpay Test Credentials (Verified Test Rails)
-RAZORPAY_KEY_ID=rzp_test_TT96z4v3ZEgzTL
-RAZORPAY_KEY_SECRET=alki5vMUFzomcKqnuQzr2HAN
+RAZORPAY_KEY_ID=rzp_test_sdfghjklfghjkl
+RAZORPAY_KEY_SECRET=alewerghbngncvmvjvk
 
 # Supabase (Optional - SQLite Local Fallback Included)
 SUPABASE_URL=https://your-supabase-id.supabase.co
