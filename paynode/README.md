@@ -116,6 +116,5 @@ python mcp_server/api_bridge.py
 cd frontend
 npm run dev
 ```
-
 ---
 
