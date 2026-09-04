@@ -13,15 +13,15 @@ def main():
     except Exception as e:
         print(f"Seed note: {e}")
 
-    print("\n[2/3] Starting FastMCP & REST Bridge Server on port 8000...")
+    print("\n[2/3] Starting FastMCP & REST Bridge Server on port 8008...")
     bridge_proc = subprocess.Popen([
         sys.executable, "-m", "uvicorn", "mcp_server.api_bridge:app",
-        "--host", "0.0.0.0", "--port", "8000", "--reload"
+        "--host", "0.0.0.0", "--port", "8008", "--reload"
     ])
 
     print("\n[3/3] PayNode is live!")
-    print("  • REST Bridge API: http://localhost:8000")
-    print("  • API Docs (Swagger): http://localhost:8000/docs")
+    print("  • REST Bridge API: http://localhost:8008")
+    print("  • API Docs (Swagger): http://localhost:8008/docs")
     print("  • Frontend: Run 'cd frontend && npm run dev' to access the UI at http://localhost:5173")
     print("\nPress Ctrl+C to stop.\n")
 

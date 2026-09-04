@@ -19,7 +19,7 @@ flowchart TD
 
     subgraph PayNodeCore ["⚡ PayNode MCP Core & REST Bridge"]
         MCP["FastMCP Server<br/>(JSON-RPC / stdio & HTTP)"]
-        REST["FastAPI REST Bridge<br/>(Port 8000)"]
+        REST["FastAPI REST Bridge<br/>(Port 8008)"]
         Guard["Safety & Budget Gate<br/>(Max ₹1,000 Cap & Price Bounds)"]
     end
 
@@ -106,9 +106,11 @@ python database/seed_data.py
 python -m pytest tests/test_mcp_tools.py -v
 ```
 
-### 4. Start FastMCP / REST Bridge Server (Port 8000)
+### 4. Start FastMCP / REST Bridge Server (Port 8008)
 ```bash
-python mcp_server/api_bridge.py
+python start_server.py
+# Or directly:
+python -m uvicorn mcp_server.api_bridge:app --host 0.0.0.0 --port 8008 --reload
 ```
 
 ### 5. Launch React + Vite Frontend (Port 5173)
